@@ -6,6 +6,9 @@
 #include<vector>
 #include<cstdlib>
 #include<cstring>
+#include <chrono>
+#include <thread>
+
 using namespace std;
 
 #define NUMBER_OF_TEST_CASE 100
@@ -94,7 +97,7 @@ int main(int argc, char** argv)
         {
             cerr << "Test case " << i << ": \n";
             system(cmd); 
-            cout << cmd << endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
             
             system(firstFileAns);
             system(secondFileAns);
