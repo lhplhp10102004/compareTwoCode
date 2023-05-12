@@ -8,7 +8,7 @@
 #include<cstring>
 using namespace std;
 
-#define NUMBER_OF_TEST_CASE 10000
+#define NUMBER_OF_TEST_CASE 100
 
 bool isEmptyFile(std::ifstream& pFile)
 {
@@ -32,7 +32,9 @@ int main(int argc, char** argv)
         string file1 = argv[1];
         string file2 = argv[2];
         string testCasefile = argv[3];
-        const char* cmd = ("./" + testCasefile).c_str();
+        
+        string my_cmd = "./" + testCasefile;    
+        const char* cmd = my_cmd.c_str();
         system(cmd);
         system("ls > .temp/myFolder");
         ifstream fileInput("./.temp/myFolder");
@@ -90,7 +92,9 @@ int main(int argc, char** argv)
 
         for (int i = 1; i <= NUMBER_OF_TEST_CASE; ++i)
         {
-            system(cmd);
+            cerr << "Test case " << i << ": \n";
+            system(cmd); 
+            cout << cmd << endl;
             
             system(firstFileAns);
             system(secondFileAns);
@@ -104,6 +108,7 @@ int main(int argc, char** argv)
                 cout << "Difference ans. Please check the test case at file" << argName << endl;
                 exit(1);
             }
+            cout << "Same\n";
         }
 
         cout << "There is no difference after take " << NUMBER_OF_TEST_CASE << " random test case. Congratulation!" << endl;
