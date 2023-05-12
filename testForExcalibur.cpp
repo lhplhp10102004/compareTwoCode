@@ -1,22 +1,24 @@
 #include<iostream>
 #include<cstdlib>
 #include<fstream>
+#include <random>
 
 #define MAX_KNIGHTS 50
 #define MAX_EVENTS  100
 
 using namespace std;
 
+random_device rd;   // non-deterministic generator
+mt19937 gen(rd());  // to seed mersenne twister.
+
 int ranInt(int min, int max)
 {
-    int range = max - min + 1;
-    return rand() % range + min;
+    uniform_int_distribution<> dist(min,max);
+    return dist(gen);
 }
 
 int main()
 {
-    srand(time(NULL));
-
     ofstream fileArmyKnights("test1");
     ofstream fileEvents("test2");
 
